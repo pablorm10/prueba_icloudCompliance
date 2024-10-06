@@ -6,4 +6,5 @@ Para desplegar este proyecto seguimos los siguientes pasos:
 - Ejecutar los seeders con el comando “php artosan db:seed”.
 - Ejecutar “composer update”.
 - Ejecutar “npm instal”.
--Ejecutar “npm run dev”.
+- Ejecutar “npm run dev”.
+
