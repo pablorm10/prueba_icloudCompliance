@@ -31,6 +31,12 @@ class DocumentRepository
         return $documents;
     }
 
+    public function findDocument($id){
+        $document = Document::findOrFail($id);
+
+        return $document;
+    }
+
 
     public function getCountDocumentsGroupByRelevance(){
         $documentCounts = Document::with('relevance')
@@ -77,5 +83,27 @@ class DocumentRepository
             ->update([$camp => $value]); // Array asociativo
 
         return $document;
+    }
+
+    public function deleteDocument($document){
+        $document->delete();
+
+        return 'ok';
+    }
+
+    public function getDocumentWhitFilter($filterDate, $filterRelevance, $paginate){
+        $documents = Document::query();
+
+        if (!empty($filterDate)) {
+            $documents->orderBy('creation_date', $filterDate);
+        }
+
+        if (!empty($filterRelevance)) {
+            $documents->where('relevance_id', $filterRelevance);
+        }
+
+        $documents = $documents->paginate($paginate);
+
+        return $documents;
     }
 }
