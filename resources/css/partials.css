@@ -53,8 +53,7 @@ footer {
 
 /* Ajuste adicional para el contenedor del main */
 .container-fluid {
-
     min-height: 100% !important; /* Altura mínima para el contenedor */
     flex-grow: 1;
-}
+    }
 

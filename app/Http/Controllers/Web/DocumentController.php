@@ -21,21 +21,22 @@ class DocumentController extends Controller
         $this->documentService = $documentService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $filterDate = $request->query('filterDate');
+        $filterRelevance = $request->query('filterRelevance');
 
-        $documents = $this->documentService->paginateDocument(env('NUMBER_DOCUMENTS_PER_PAGE_PAGINATION'));
+        $documents = $this->documentService->getDocumentsByFilters($filterDate, $filterRelevance);
 
-        // Pasar los documentos a la vista
-        return view('documents.index', compact('documents'));
+        $relevances = RelevanceDocument::all();
+        return view('documents.index', compact('documents', 'relevances'));
     }
 
     public function show($id)
     {
-        // Obtener el documento por su ID
-        $document = Document::findOrFail($id);
 
-        // Si el documento tiene el archivo en base64 (asumiendo que está en un campo 'file_base64')
+        $document = $this->documentService->getDocumentById($id);
+
         $base64PDF = $document->content;
 
         return view('documents.show', compact('document', 'base64PDF'));
@@ -50,7 +51,7 @@ class DocumentController extends Controller
     }
 
     public function update(Request $request, $id){
-        // Validar los datos recibidos
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'nullable|max:1000',
@@ -60,36 +61,20 @@ class DocumentController extends Controller
         $dataRequest = $request->only(['title', 'description', 'content', 'relevance_id', 'approval_status']);
         $dataRequest['id']=$id;
 
-        // if(!empty('document')){
-        //     $file = $request->file('document');
-
-        //     // Obtener el contenido del archivo en formato binario
-
-        //     $fileContent = file_get_contents($file->getRealPath());
-
-        //     // Convertir a base64
-        //     $base64 = base64_encode($fileContent);
-
-        //     $dataRequest['document']=$base64;
-        // }
 
 
         $responseService = $this->documentService->updateDocumentByRequest($dataRequest);
 
-         // Redirigir con mensaje de éxito
+
         return redirect()->route('documents.index')->with('success', 'Documento actualizado con éxito.');
     }
 
 
     public function destroy($id)
     {
-        // Encontrar el documento
-        $document = Document::findOrFail($id);
 
-        // Eliminar el documento
-        $document->delete();
+        $responseService = $this->documentService->deleteDocument($id);
 
-        // Redirigir al listado de documentos con un mensaje de éxito
         return redirect()->route('documents.index')->with('success', 'Documento eliminado con éxito.');
     }
 
@@ -101,7 +86,6 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Validar los datos del formulario
         $validated = $request->validate([
             'title' => 'required|string|max:200',
             'description' => 'nullable|string',
@@ -117,7 +101,7 @@ class DocumentController extends Controller
         }
 
         $responseService = $this->documentService->createNewDocument($dataRequest);
-        // 4. Redirigir o devolver una respuesta
+
         return redirect()->route('documents.index')->with('success', 'Documento creado correctamente.');
     }
 
@@ -125,7 +109,6 @@ class DocumentController extends Controller
 
     public function showChart()
     {
-        // Obtener la cantidad de documentos agrupados por relevancia
         $documentosCountsRelevancia = $this->documentService->getDocumentsGroupedByRelevance();
         $totalDocumentos=count($this->documentService->getDocuments());
         // Prepara los datos para el gráfico
@@ -138,10 +121,9 @@ class DocumentController extends Controller
             $data[] = $doc->total;
         }
 
-        // Pasar los datos a la vista, ya convertidos en JSON
         return view('grafico1', [
             'total' => $totalDocumentos,
-            'labels' => json_encode($labels),  // Los pasamos como JSON
+            'labels' => json_encode($labels),
             'data' => json_encode($data)
         ]);
     }
@@ -154,7 +136,7 @@ class DocumentController extends Controller
         $labels = array_keys($arrayApprovedDocument['dataPerMonth']);  // Etiquetas (Meses)
         $data = array_values($arrayApprovedDocument['dataPerMonth']);  // Datos (Documentos aprobados por mes)
 
-        // Pasamos los datos a la vista
+
         return view('grafico2', [
             'year' => Carbon::now()->year,
             'totalDocuments' => $arrayApprovedDocument['totalDocuments'],

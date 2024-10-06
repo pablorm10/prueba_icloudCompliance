@@ -39,11 +39,12 @@ class DocumentService
         return $documentsResponse;
     }
 
+
     public function getDocuments(){
         $documents = $this->documentRepository->getDocuments();
 
 
-        return $this->documentRepository->getDocuments();
+        return $documents;
     }
 
     public function getDocumentsGroupedByRelevance(){
@@ -90,7 +91,6 @@ class DocumentService
 
         foreach ($arrayMonths as $month => $numberMonth) {
             $countTotalMonth=0;
-            // $arrayDates[$month]=$month
             foreach ($arrayDateDocuments as $dateDocument) {
                 $monthDate=$this->dateService->getMonthToDate($dateDocument);
 
@@ -157,7 +157,7 @@ class DocumentService
 
     public function paginateDocument($numberDocumentsPerPage){
 
-        $ppppp = env('CAMP_APPROVAL_DATE');
+
         $documents = $this->documentRepository->getDocumentsPaginate($numberDocumentsPerPage);
 
         return $documents;
@@ -166,6 +166,24 @@ class DocumentService
     public function approveDocument($idDocument){
 
         $this->documentRepository->updateCampDocumentById($idDocument, env('CAMP_APPROVAL_DATE'), Carbon::now());
+    }
+
+    public function deleteDocument($id){
+        $document=$this->documentRepository->findDocument($id);
+
+        $this->documentRepository->deleteDocument($document);
+    }
+
+    public function getDocumentById($id){
+        $document=$this->documentRepository->findDocument($id);
+
+        return $document;
+    }
+
+    public function getDocumentsByFilters($filterDate=null, $filterRelevance=null){
+        $documents = $this->documentRepository->getDocumentWhitFilter($filterDate, $filterRelevance, env('NUMBER_DOCUMENTS_PER_PAGE_PAGINATION'));
+
+        return $documents;
     }
 
 

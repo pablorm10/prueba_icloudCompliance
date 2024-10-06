@@ -18,10 +18,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validar los datos de entrada
+
         $credenciales = $request->only('nick_name', 'password');
 
-        // Intentar crear un token
+
         $token = $this->tokenService->createToken($credenciales);
 
         if ($token) {

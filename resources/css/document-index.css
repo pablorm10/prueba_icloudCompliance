@@ -71,3 +71,12 @@
 .approved-document:hover{
     background-color: var(--color-green-clear-hover) !important;
 }
+
+.select-index{
+    background-color: white;
+}
+
+.label-index{
+    font-weight: bold;
+    color: var(--color-primary-dark);
+}
