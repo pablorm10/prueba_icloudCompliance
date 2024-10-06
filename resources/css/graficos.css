@@ -1,0 +1,21 @@
+html, body {
+    height: 100%; /* Asegura que html y body ocupen toda la altura */
+    margin: 0; /* Elimina márgenes */
+}
+
+.chart-container {
+    margin-top: -34px;/* Asegúrate de que no sobrepase la pantalla */
+}
+
+@media (min-width: 992px) {
+    .texto-grafica-rueda {
+        padding-right: 60px;
+        padding-bottom: 30px;
+    }
+}
+
+.graf-div-text{
+    width: 80%;
+    max-width: 600px;
+    height: 60vh;
+}

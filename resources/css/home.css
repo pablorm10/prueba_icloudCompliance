@@ -1,0 +1,23 @@
+.contenedor-home{
+    margin-top: 120px;
+}
+
+.h1-home{
+    font-size: 70px;
+}
+
+.p-home{
+    font-size: 25px;
+    color: var(--color-grease-dark);
+}
+
+.btn-home{
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-secondary) !important;
+}
+.btn-home:hover {
+    background-color: var(--color-secondary) !important;
+    color: white !important;
+}
+
+

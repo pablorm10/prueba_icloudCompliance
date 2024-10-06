@@ -1,0 +1,12 @@
+.select-edit{
+    border: 1px solid  var(--color-primary) !important;
+}
+
+.labels-edit{
+    color: var(--color-primary-dark) !important;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+

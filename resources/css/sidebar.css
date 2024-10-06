@@ -1,0 +1,21 @@
+.sidebar-cuerpo{
+    background-color: var(--color-primary-dark);
+    width: 220px !important;
+    min-height: 100vh;
+
+}
+
+.sidebar-textoUser{
+    color: var(--color-secondary) !important;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.sidebar-textos-enlace{
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+.sidebar-textos-enlace:hover{
+    color: var(--color-secondary) !important;
+}

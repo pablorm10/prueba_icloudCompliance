@@ -1,0 +1,60 @@
+/* resources/css/partials.css */
+
+html, body {
+    height: 100% !important;
+    margin: 0 !important;
+    /* Remove this line if the image isn't loading */
+    background-image: url('/public/imagenes/genericas/fondo_principal.jpg');
+    background-size: cover; /* Para cubrir toda la ventana */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar la repetición de la imagen */
+    background-attachment: fixed;
+}
+
+body {
+    background-color: var(--color-background); /* Color de fondo adicional */
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos para la navbar */
+.navbar {
+    background-color: var(--color-primary);
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navbar .navbar-brand {
+    color: white;
+}
+
+.navbar .btn-light {
+    color: var(--color-primary);
+    border-color: var(--color-secondary);
+}
+
+.navbar .btn-login:hover {
+    background-color: var(--color-secondary) !important;
+    color: white;
+}
+
+
+/* Estilos para el footer */
+footer {
+    padding: 1em 0;
+    text-align: center;
+    margin-top: auto;
+    background-color: var(--color-grey);
+}
+
+/* Ajuste adicional para el contenedor del main */
+.container-fluid {
+
+    min-height: 100% !important; /* Altura mínima para el contenedor */
+    flex-grow: 1;
+}
+

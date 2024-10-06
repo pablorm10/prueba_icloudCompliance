@@ -1,0 +1,19 @@
+/* resources/css/colors.css */
+
+:root {
+    --color-primary: #0f59a8;
+    --color-primary-dark: #063970;
+    --color-primary-clear: #26282a;
+    --color-secondary: #e9b61e;
+    --color-grey: #eee8e8;
+    --color-grease-dark: #4b4949;
+    --color-grease-clear: #efe8e8;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+    --color-danger-clear: #e68c95;
+    --color-warning: #ffc107;
+    --color-white: #f8f9fa;
+    --color-text: #212529;
+    --color-green-clear: rgb(209, 255, 222);
+    --color-green-clear-hover: rgb(197, 223, 203);
+}

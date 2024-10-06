@@ -1,0 +1,35 @@
+.container-fluid{
+    background-color: var(--color-grease-clear);
+    background-image: none;
+}
+
+.container{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+main {
+    min-height: calc(100vh - 100px); /* Ajusta 100px según la altura del footer */
+}
+
+/* Opcional: Asegura que el canvas no crezca demasiado */
+canvas {
+    max-height: 66vh; /* Limita la altura del canvas a un porcentaje de la pantalla */
+    max-width: 100%;
+}
+
+.document-stats {
+    display: flex; /* Hace que los hijos se alineen en una fila */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    margin-bottom: 21px; /* Agrega un margen inferior */
+}
+
+.document-stats p {
+    margin-right: 20px; /* Espacio entre los párrafos */
+    margin-bottom: 0; /* Elimina el margen inferior de los <p> para que no haya separación vertical */
+}
+
+.spanText{
+    font-weight: bold;
+    color: var(--color-primary-dark);
+}
+

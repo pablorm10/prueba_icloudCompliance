@@ -1,0 +1,20 @@
+.text-notApproved{
+   color: var(--color-danger) !important;
+}
+
+.text-approved{
+    color: var(--color-success) !important;
+}
+
+.title-card{
+    font-size: 19px;
+    color: var(--color-primary-dark);
+}
+
+.card-data{
+    border: 1px solid var(--color-primary-dark) !important;
+}
+.content-pdf{
+    border: 1px solid var(--color-primary-dark) !important;
+    background-color: white;
+}
