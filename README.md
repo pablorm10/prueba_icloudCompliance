@@ -5,5 +5,6 @@ Para desplegar este proyecto seguimos los siguientes pasos:
 - Ejecutar migraciones con el comando “php artisan migrate”.
 - Ejecutar los seeders con el comando “php artosan db:seed”.
 - Ejecutar “composer update”.
-- Ejecutar “npm instal” si no lo tenemos.
--Ejecutar “npm run dev”.
+- Ejecutar “npm instal”.
+- Ejecutar “npm run dev”.
+
